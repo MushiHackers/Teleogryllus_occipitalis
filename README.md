@@ -106,10 +106,6 @@ RepeatMasker T_occipitalis_genome_final.fa -pa 30 -lib ./RM_354200.ThuOct1023271
 
 ### Trinity
 ```
-PATH={$PATH}:/home/kataoka/work/samtools
-PATH={$PATH}:/home/kataoka/work/masurca/MaSuRCA-3.3.0/bin
-PATH={$PATH}:/home/kataoka/work/bowtie2-2.2.6
-PATH={$PATH}:/home/kataoka/work/salmon-latest_linux_x86_64/bin
 Trinity --seqType fq --max_memory 100G --left Muscle_1.fastq --right Muscle_2.fastq --CPU 8
 ```
 
