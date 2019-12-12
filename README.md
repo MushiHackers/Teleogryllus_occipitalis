@@ -38,15 +38,14 @@ END
 ```
 ### HaploMerger2
 ```
-windowmasker -checkdup true -mk_counts -in /work/korogi/genome/toccipitalis.hybrid.flye.3.fasta -out masking_library.ustat -mem 6500
-windowmasker -ustat masking_library.ustat -in /work/korogi/genome/toccipitalis.hybrid.flye.3.fasta  -out  /work/korogi/genome/toccipitalis.hybrid.flye.3.softmasked.fasta -outfmt fasta -dust true
-PATH={$PATH}:/home/kataoka/work/HaploMerger2/HaploMerger2_20180603/bin
+windowmasker -checkdup true -mk_counts -in T_occipitalis_hybrid.fasta -out masking_library.ustat -mem 6500
+windowmasker -ustat masking_library.ustat -in T_occipitalis_hybrid.fasta -out T_occipitalis_hybrid_softmasked.fasta -outfmt fasta -dust true
 run_all.batch >run_all.log 2>&1
 ```
 
 ### QUAST
 ```
-quast.py /work/korogi/genome/toccipitalis_genome_final.fa
+quast.py T_occipitalis_hybrid.fasta
 ```
 ### Trimommatic
 ```
@@ -68,7 +67,7 @@ K-mer                 = 39
 Max memory            =
 Extended log          = 0
 Save assembled reads  = no
-Seed Input            = /home/kataoka/work/NOVOPlasty/toccipitalis_seed.fasta
+Seed Input            = T_occipitalis_seed.fasta
 Reference sequence    =
 Variance detection    =
 Chloroplast sequence  =
@@ -80,8 +79,8 @@ Insert size           =
 Platform              = illumina
 Single/Paired         = PE
 Combined reads        =
-Forward reads         = /work/korogi/genome/T_occipitalis_1P_trimmed.fq
-Reverse reads         = /work/korogi/genome/T_occipitalis_2P_trimmed.fq
+Forward reads         = T_occipitalis_1P_trimmed.fq
+Reverse reads         = T_occipitalis_2P_trimmed.fq
 
 Heteroplasmy:
 -----------------------
@@ -100,9 +99,9 @@ Use Quality Scores    =
 
 ### RepeatModeler, RepeatMasker
 ```
-BuildDatabase -name toccipitalis_repeaet_database -engine ncbi /work/korogi/genome/toccipitalis_genome_final.fa
-RepeatModeler -engine ncbi -pa 30 -database toccipitalis_repeaet_database
-RepeatMasker /work/korogi/genome/toccipitalis_genome_final.fa -pa 30 -lib ./RM_354200.ThuOct102327132019/consensi.fa.classified -xsmall -s -html
+BuildDatabase -name T_occipitalis_repeaet_database -engine ncbi T_occipitalis_genome_final.fa
+RepeatModeler -engine ncbi -pa 30 -database T_occipitalis_repeaet_database
+RepeatMasker T_occipitalis_genome_final.fa -pa 30 -lib ./RM_354200.ThuOct102327132019/consensi.fa.classified -xsmall -s -html
 ```
 
 ### Trinity
@@ -111,12 +110,12 @@ PATH={$PATH}:/home/kataoka/work/samtools
 PATH={$PATH}:/home/kataoka/work/masurca/MaSuRCA-3.3.0/bin
 PATH={$PATH}:/home/kataoka/work/bowtie2-2.2.6
 PATH={$PATH}:/home/kataoka/work/salmon-latest_linux_x86_64/bin
-Trinity --seqType fq --max_memory 100G --left /home/kataoka/work/DATA/transcriptome/Muscle_1.fastq --right /home/kataoka/work/DATA/transcriptome/Muscle_2.fastq --CPU 8
+Trinity --seqType fq --max_memory 100G --left Muscle_1.fastq --right Muscle_2.fastq --CPU 8
 ```
 
 ### Transdecorder
 ```
-TransDecoder.LongOrfs -t /home/kataoka/work/trinityrnaseq/190806_T.occipitalis/trinity_out_dir/Trinity.fasta
+TransDecoder.LongOrfs -t Trinity.fasta
 ```
 
 ### Extraction of complete gene from output of Transdecoder
