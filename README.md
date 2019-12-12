@@ -6,7 +6,7 @@
 ### GenomeScope
 ```
 cat T_occipitalis_1P.fq T_occipitalis_2P.fq > list
-jellyfish count -C -m 21 -s 1000000000 -t 40 /home/kataoka/work/DATA/shortread/toccipitalis/list -o reads.jf
+jellyfish count -C -m 21 -s 1000000000 -t 40 list -o reads.jf
 jellyfish histo -t 40 reads.jf > reads.histogram
 Rscript genomescope.R reads.histogram 31 301 output_dir_kmer_31
 ```
