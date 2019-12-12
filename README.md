@@ -119,13 +119,6 @@ TransDecoder.LongOrfs -t Trinity.fasta
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#PBS -S /bin/env python
-#PBS -l nodes=1
-#PBS -q yuri_all
-#PBS -N compgene_finder
-#PBS -j eo
-#PBS -m ae
-
 import sys
 from Bio import SeqIO
 import csv
