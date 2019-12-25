@@ -151,8 +151,12 @@ diamond blastp -d ${db} -q Teleogryllus_occipitalis_UnassignedOG.fasta -p 20 --o
 diamond blastp -d ${db} -q Teleogryllus_occipitalis_UniqOG.fasta -p 20 --outfmt 6 -o Uniq.m6
 ```
 
-### prosite
+### blastp
 ```
-ps_scan.pl -d prosite.dat Teleogryllus_occipitalis_UniqOG.fasta > Uniq_prosite.txt
-ps_scan.pl -d prosite.dat Teleogryllus_occipitalis_UnassignedOG.fasta > Unassigned_prosite.txt
+blastp -db ${database} -query Teleogryllus_occipitalis_geneset.fasta -outfmt 14 -num_threads 60 -out Teleogryllus_o_db.xml -max_target_seqs 1
+```
+
+### Interproscan
+```
+interproscan.sh -i  Teleogryllus_occipitalis_geneset.fasta -b Teleogryllus_occipitalis --goterms --pathways -f xml -f tsv -f html -iprlookup -pa
 ```
